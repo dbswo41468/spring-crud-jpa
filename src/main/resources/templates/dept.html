@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRUD! 😛</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../static/style.css" />
   </head>
   <body>
     <div class="container">
@@ -183,7 +183,41 @@
     }
 
     function addSubject() {
+      // 추가 페이지 출력
       $('.write-popup').css('display', 'block');
+
+      callAPI(); // 함수 호출
+
+      // 조회
+      function callAPI() {
+        // ajax : 백엔드와 프론트가 통신하는 기능!
+        // dataType : return 데이터를 json으로 받음
+        var s = [];
+        $.ajax({
+          url: '/api/v1/deptno',
+          type: 'GET',
+          contentType: 'application/json',
+          dataType: 'json',
+          success: function (response) {
+            for (var i in response) {
+              tr = $('<tr></tr>');
+
+              var id = $('<td>' + response[i].id + '</td>');
+              var name = $('<td>' + response[i].name + '</td>');
+              var age = $('<td>' + response[i].age + '</td>');
+              // 조인 후 부서 이름 가져오기
+              var dname = $('<td>' + response[i].dept.dname + '</td>');
+
+              tr.append(id);
+              tr.append(name);
+              tr.append(age);
+              tr.append(dname);
+
+              $('#members').append(tr);
+            }
+          },
+        });
+      }
     }
   </script>
 </html>
