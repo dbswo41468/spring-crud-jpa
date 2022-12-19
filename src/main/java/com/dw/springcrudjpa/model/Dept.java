@@ -4,11 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
 
+//
 @Getter
 @Setter
 @Entity
@@ -19,7 +21,7 @@ public class Dept {
 
     // 번호
     @Column
-    private int num; // pk
+    private Long process_number; // pk
 
     // 과정명
     @Column
@@ -29,9 +31,13 @@ public class Dept {
     @Column
     private int process_class; //
 
-    // 과정 기간
+    // 과정 시작 기간
     @Column
-    private String process_time; //
+    private String process_start_period; //
+
+    // 과정 종료 기간
+    @Column
+    private String process_end_period; //
 
     // 담당 교사
     @Column
