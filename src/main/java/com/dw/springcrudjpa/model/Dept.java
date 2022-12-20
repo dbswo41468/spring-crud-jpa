@@ -10,7 +10,6 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-//
 @Getter
 @Setter
 @Entity
@@ -21,26 +20,33 @@ public class Dept {
 
     // 번호
     @Column
-    private Long process_number; // pk
-
+    private Long processNumber; // pk
     // 과정명
     @Column
-    private String process_name; //
+    private String processName; //
 
     // 과정 호실
     @Column
-    private int process_class; //
+    private int processClass; //
 
     // 과정 시작 기간
     @Column
-    private String process_start_period; //
+    private String processStartPeriod; //
 
     // 과정 종료 기간
     @Column
-    private String process_end_period; //
+    private String processEndPeriod; //
 
     // 담당 교사
     @Column
-    private String process_teacher; //
+    private String processTeacher; //
 
+    // // 조인
+    // // One to Many 구분 해야한다
+    // // One to One
+    // // Many to Many
+    // @ManyToOne
+    // // @JoinColumn() -> member 테이블에 dept_id 라는 컬럼(FK)생성
+    // @JoinColumn(name = "dw_student")
+    // private Student student;
 }

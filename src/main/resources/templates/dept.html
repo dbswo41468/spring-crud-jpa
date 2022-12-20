@@ -81,13 +81,13 @@
             </a>
           </li>
           <li>
-            <a href="./index.html">
+            <a href="./indexs">
               <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
               <span class="title">학생 목록</span>
             </a>
           </li>
           <li>
-            <a href="./dept.html">
+            <a href="./depts">
               <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
               <span class="title">과정 목록</span>
             </a>
@@ -179,22 +179,22 @@
     });
 
     // 파라미터 값 입력
-    function getSubject(process_number) {
+    function getSubject(processNumber) {
       $('.update-popup').css('display', 'block');
 
       // 상세 조회
       $.ajax({
-        url: '/processdept/' + process_number,
+        url: '/processdept/' + processNumber,
         type: 'GET',
         dataType: 'json',
         success: function (response) {
           console.log(response);
-          $('#infoNum').val(response.process_number);
-          $('#infoName').val(response.process_name);
-          $('#infoClass').val(response.process_class);
-          $('#infoStart').val(response.process_start_period);
-          $('#infoEnd').val(response.process_end_period);
-          $('#infoTeacher').val(response.process_teacher);
+          $('#infoNum').val(response.processNumber);
+          $('#infoName').val(response.processName);
+          $('#infoClass').val(response.processClass);
+          $('#infoStart').val(response.processStartPeriod);
+          $('#infoEnd').val(response.processEndPeriod);
+          $('#infoTeacher').val(response.processTeacher);
         },
       });
     }
@@ -214,12 +214,12 @@
       var processTeacher = $('#processTeacher').val();
 
       var japdata = {
-        process_number: processNumber,
-        process_name: processName,
-        process_class: processClass,
-        process_start_period: processStartPeriod,
-        process_end_period: processEndPeriod,
-        process_teacher: processTeacher,
+        processNumber: processNumber,
+        processName: processName,
+        processClass: processClass,
+        processStartPeriod: processStartPeriod,
+        processEndPeriod: processEndPeriod,
+        processTeacher: processTeacher,
       };
 
       $.ajax({
@@ -250,13 +250,13 @@
         success: function (response) {
           for (var i in response) {
             // 입력한 파라미터값 추가 + response[i].process_number +
-            tr = $('<tr onclick="getSubject(' + response[i].process_number + ')"></tr>');
+            tr = $('<tr onclick="getSubject(' + response[i].processNumber + ')"></tr>');
 
-            var processNumber = $('<td>' + response[i].process_number + '</td>');
-            var processName = $('<td>' + response[i].process_name + '</td>');
-            var processClass = $('<td>' + response[i].process_class + '</td>');
-            var processStartEndPeriod = $('<td>' + response[i].process_start_period + ' ~ ' + response[i].process_end_period + '</td>');
-            var processTeacher = $('<td>' + response[i].process_teacher + '</td>');
+            var processNumber = $('<td>' + response[i].processNumber + '</td>');
+            var processName = $('<td>' + response[i].processName + '</td>');
+            var processClass = $('<td>' + response[i].processClass + '</td>');
+            var processStartEndPeriod = $('<td>' + response[i].processStartPeriod + ' ~ ' + response[i].processEndPeriod + '</td>');
+            var processTeacher = $('<td>' + response[i].processTeacher + '</td>');
 
             tr.append(processNumber);
             tr.append(processName);
@@ -271,7 +271,7 @@
     }
 
     // 삭제
-    function infoDelete(process_number) {
+    function infoDelete(processNumber) {
       var infoNum = $('#infoNum').val();
 
       $.ajax({
@@ -295,12 +295,12 @@
       var infoTeacher = $('#infoTeacher').val();
 
       var data = {
-        process_number: infoNum,
-        process_name: infoName,
-        process_class: infoClass,
-        process_start_period: infoStart,
-        process_end_period: infoEnd,
-        process_teacher: infoTeacher,
+        processNumber: infoNum,
+        processName: infoName,
+        processClass: infoClass,
+        processStartPeriod: infoStart,
+        processEndPeriod: infoEnd,
+        processTeacher: infoTeacher,
       };
       $.ajax({
         url: '/processdept',
